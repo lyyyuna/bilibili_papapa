@@ -3,6 +3,7 @@ import scrapy
 from scrapy import FormRequest
 import time
 import json
+import random
 
 class BilispiderSpider(scrapy.Spider):
     name = "bilispider"
@@ -13,7 +14,7 @@ class BilispiderSpider(scrapy.Spider):
             yield FormRequest(url=url_base, 
                             formdata={'_' : str(int(time.time()*1000)),
                                         'mid' : str(i)},
-                            headers={'Referer': 'http://space.bilibili.com'},
+                            headers={'Referer': 'http://space.bilibili.com/'+str(i)+'/'},
                             callback=self.parse)
 
     def parse(self, response):
