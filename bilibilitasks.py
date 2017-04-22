@@ -20,7 +20,8 @@ def download(i):
         response = requests.post(
                 url,
                 headers={'Referer': 'http://space.bilibili.com/'+str(i)+'/'},
-                data=payload
+                data=payload,
+                timeout=20
         ).text
     except Exception:
         print ('Network error.')
