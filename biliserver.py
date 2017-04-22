@@ -51,7 +51,7 @@ class myThread(threading.Thread):
                     if 'toutu' in buser:
                         del buser['toutu']
                     mid = buser['mid']
-                    maxmid.replace_one({'max': 'flag'}, {'max': 'flag', 'mid' : '0'}, upsert=True)
+                    maxmid.replace_one({'max': 'flag'}, {'max': 'flag', 'mid' : str(mid)}, upsert=True)
                     biliusers.replace_one({'mid': mid}, buser, upsert=True)    
 
 
@@ -70,4 +70,5 @@ while True:
     for i in xrange(nextmid, 100000):
         q.put(i)
         time.sleep(1)
-        print (i)
+        if i%100 == 0:
+            print i, time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 
