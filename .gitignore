@@ -90,3 +90,4 @@ ENV/
 
 # log
 log
+config.py
