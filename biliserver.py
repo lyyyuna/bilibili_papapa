@@ -25,9 +25,8 @@ class myThread(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
+        nextmid = q.get()
         while True:
-            nextmid = q.get()
-
             result = download.delay(nextmid)
             try:
                 response = result.get(90)   
@@ -52,7 +51,9 @@ class myThread(threading.Thread):
                         del buser['toutu']
                     mid = buser['mid']
                     maxmid.replace_one({'max': 'flag'}, {'max': 'flag', 'mid' : str(mid)}, upsert=True)
-                    biliusers.replace_one({'mid': mid}, buser, upsert=True)    
+                    biliusers.replace_one({'mid': mid}, buser, upsert=True)   
+
+            nextmid = q.get() 
 
 
 for i in range(0, 2):
