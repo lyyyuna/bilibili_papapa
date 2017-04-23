@@ -68,12 +68,13 @@ while True:
     nextmid = 1
     for doc in db.maxmid.find():
         nextmid = int(doc['mid'])
-    if nextmid > 100000:
+    if nextmid > 40000000:
         logger.info('Finish')
         print ('Finish')
         sys.exit()
-    for i in xrange(nextmid, 100000):
+    for i in xrange(nextmid, 40000000):
         q.put(i)
         time.sleep(1)
+        print (i)
         if i%100 == 0:
             print i, time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 
