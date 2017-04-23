@@ -34,6 +34,10 @@ class myThread(threading.Thread):
                 logger.info("task wait timeout.\n" + str(e))
                 print(str(e))
                 continue
+
+            # forget result
+            result.forget()
+
             try:
                 res_dict = json.loads(response)
             except Exception, e:

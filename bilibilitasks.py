@@ -6,6 +6,7 @@ import config
 app = Celery('tasks',
             broker=config.server,
             backend=config.server)
+app.conf.CELERY_TASK_RESULT_EXPIRES = 300
 url = 'http://space.bilibili.com/ajax/member/GetInfo'
 
 
