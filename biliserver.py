@@ -1,4 +1,4 @@
-from bilibilitasks import download
+from bilibilitasks import download, config
 from pymongo import MongoClient
 import json
 import threading
@@ -60,7 +60,7 @@ class myThread(threading.Thread):
             nextmid = q.get() 
 
 
-for i in range(0, 2):
+for i in range(0, config.thread_num):
     thread = myThread()
     thread.start()
 
@@ -74,7 +74,7 @@ while True:
         sys.exit()
     for i in xrange(nextmid, 40000000):
         q.put(i)
-        time.sleep(1)
+        time.sleep(config.queue_sleep)
         print (i)
         if i%100 == 0:
             print i, time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 

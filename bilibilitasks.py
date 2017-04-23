@@ -27,5 +27,5 @@ def download(i):
     except Exception:
         print ('Network error.')
         response = 'ERROR'
-    time.sleep(1.5)
+    time.sleep(config.task_sleep)
     return response
