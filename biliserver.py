@@ -31,8 +31,9 @@ class mongoThread(threading.Thread):
     def run(self):
         while True:
             if lock.acquire():
+                logger.info('Msg in queue are: ' + str(len(mongoq)))
                 tmpmongoq = copy.deepcopy(mongoq)
-                mongoq.clear()
+                del mongoq[:]
                 lock.release()
                 mid = -1
                 for buser in tmpmongoq:
