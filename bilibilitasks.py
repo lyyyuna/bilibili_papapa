@@ -24,8 +24,8 @@ def download(i):
                 data=payload,
                 timeout=20
         ).text
-    except Exception:
+    except Exception, e:
         print ('Network error.')
-        response = 'ERROR'
+        response = str(e)
     time.sleep(config.task_sleep)
     return response
