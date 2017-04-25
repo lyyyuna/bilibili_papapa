@@ -68,7 +68,7 @@ class myThread(threading.Thread):
                 res_dict = json.loads(response)
             except Exception, e:
                 res_dict = {}
-                logger.info("Json decode failed.\n" + str(e) + ' ' + response)
+                logger.info("Json decode failed.\n" + str(e) + ' \n' + str(nextmid) + '\n' + response)
                 print(str(e))
 
             status = res_dict['status'] if 'status' in res_dict.keys() else False
